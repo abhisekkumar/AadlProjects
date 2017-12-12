@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<instance:SystemInstance xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aadl2="http://aadl.info/AADL/2.0" xmlns:instance="http://aadl.info/AADL/2.0/instance" name="RVaryingLimits_impl_Instance" category="process">
+  <ownedPropertyAssociation xsi:type="instance:PropertyAssociationInstance">
+    <property href="../../Plugin_Resources/SEI.aadl#SEI.MIPSBudget"/>
+    <ownedValue>
+      <ownedValue xsi:type="aadl2:RealLiteral" value="775.0">
+        <unit href="../../Plugin_Resources/SEI.aadl#/0/@ownedPropertyType.4/@ownedLiteral.1"/>
+      </ownedValue>
+    </ownedValue>
+    <propertyAssociation href="../packages/Speedwrisic.aadl#/0/@ownedPublicSection/@ownedClassifier.51/@ownedPropertyAssociation.0"/>
+  </ownedPropertyAssociation>
+  <featureInstance name="varSpeed" direction="out">
+    <feature xsi:type="aadl2:DataPort" href="../packages/Speedwrisic.aadl#/0/@ownedPublicSection/@ownedClassifier.50/@ownedDataPort.0"/>
+  </featureInstance>
+  <systemOperationMode name="No Modes"/>
+  <componentImplementation xsi:type="aadl2:ProcessImplementation" href="../packages/Speedwrisic.aadl#Speedwrisic.RVaryingLimits.impl"/>
+</instance:SystemInstance>

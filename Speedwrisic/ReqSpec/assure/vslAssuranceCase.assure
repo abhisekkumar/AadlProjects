@@ -1,0 +1,124 @@
+case speedAssuranceCase
+[
+	tbdcount 0 [
+	model speedAssuranceCase.speedAssurancePlan
+	for Speedwrisic::Speed.impl
+			[
+			tbdcount 0
+			
+			
+			
+			claim Roadside
+			[
+				tbdcount 0				
+				verification Roadside
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]	
+			]
+			
+			claim Roadside
+			[				
+				tbdcount 0
+				verification Roadside
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			claim Roadside
+			[
+				tbdcount 0
+				verification Roadside
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			
+			
+			claim Roadside
+			[
+				tbdcount 0
+				verification Roadside
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			
+			claim Roadway	
+			[		
+				tbdcount 0
+				verification Roadway
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			claim Roadside	
+			[
+				tbdcount 0
+				verification Roadside
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			
+			claim sys
+			[
+				tbdcount 0
+				verification sys
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+				
+			]
+			
+			claim TMC
+			[
+				tbdcount 0
+				verification sys
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]	
+			
+			]
+			
+			claim VarspeedPlan
+			[
+				tbdcount 0
+				verification sys
+				[
+					executionstate todo
+					resultstate tbd
+					tbdcount 0
+				]
+			]
+			
+		]
+		
+		
+]]

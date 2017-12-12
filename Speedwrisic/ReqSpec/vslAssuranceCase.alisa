@@ -1,0 +1,5 @@
+assurance case speedAssuranceCase for Speedwrisic::Speed[
+	assurance plan speedAssurancePlan for Speedwrisic::Speed.impl[
+		assure sys
+]
+]

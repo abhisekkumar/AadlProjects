@@ -1,0 +1,20 @@
+document SpeedStakeholderReq [
+	section ActualRequirements [
+		goal SR_1 : "Inhibit car from skiding by assigning a slip angle of 45 degree" 
+			[stakeholder ConnectedVehicle.vo]
+		
+		goal SR_2 : "Speed component determine the speed variability in a system"
+			[stakeholder ConnectedVehicle.vo]
+			
+		goal SR_3 : "Sensors should display accurate information to the the transit system and the driver"
+			[stakeholder ConnectedVehicle.vo]
+		
+		goal SR_4 : "Equipments related to the vehicle to vehicle communication should be accurate"
+			[stakeholder ConnectedVehicle.top]
+		
+		goal SR_5 : "Real time information between the management and vehicular system should be updated in regular intervals"
+			[stakeholder ConnectedVehicle.top]
+		
+		
+	]
+]

@@ -1,0 +1,158 @@
+system requirements Vehicles for Speedwrisic::Vehicletransit.impl
+[
+	val syncdata = 20 ns 
+	val distcalculate = 32 
+	val acceleratespeed = 30  
+	val metasyncdata = 40 ms
+	val speedcompliance = 0.5 
+	val locateAccuracy = 0.75 
+	val init_data = 55 	//previous data will be calculated
+	val environmentData = 55  //environmental data should be verified
+	
+	val charge_a=96.0
+	val charge_b=78.0
+	
+	
+	
+	requirement req1 : "Data should be synced and available to all modules at all time" 
+	[
+		description "Information should be available all the time"
+		compute speedLimit:boolean
+		value predicate speedLimit == true
+		mitigates "Data error sent by road side equipments"
+		issues "sync should be done in real time"
+		category quality.availability
+		see goal SpeedStakeholderReq.SR_2
+	]
+	
+	requirement req2 : "Realtime data availability through sensor input" 
+	[
+		description "Sync between static and dynamic data at regular intervals"
+		value predicate metasyncdata < syncdata
+		mitigates "Information synced data has expired"
+		issues "Management is unaware of the errors"
+		category quality.performance
+		see goal SpeedStakeholderReq.SR_2
+	]
+	
+	requirement req3 : "Speed along with location will be updated accurately alleviating latency"
+	[
+		description "The redundant data sensors will be within the expected limit"
+		compute speedInfoStatus:boolean
+		value predicate speedInfoStatus == acceleratespeed - distcalculate <speedcompliance && acceleratespeed - distcalculate > -speedcompliance
+		mitigates "Sensor data is giving error"
+		category quality.correctness
+		see goal SpeedStakeholderReq.SR_3 SpeedStakeholderReq.SR_2
+	]
+	
+		
+	requirement req4 : "The vehicular data sensors specially internal combustion sensor should be accurate" 
+	[
+		description "The data should be in threshold limit"
+		compute envStatus:boolean
+		value predicate envStatus == init_data - environmentData > -locateAccuracy && init_data - environmentData < locateAccuracy
+		mitigates "Sensors not synced"
+		issues "The data is redundant"
+		category quality.availability
+		see goal SpeedStakeholderReq.SR_5 SpeedStakeholderReq.SR_3
+	]
+	
+	
+	
+]
+
+system requirements Roadway for Speedwrisic::RVaryingLimits.impl
+[
+	val locateAccuracy = 0.75
+	val init_data = 55	//computing init_data
+	val environmentData = 55  //computing environmentData
+	
+	requirement req5 : "The Roadways sensor data (weather) provide accurate info" 
+	[
+		description "There is no sudden variations"
+		compute envStatus:boolean
+		value predicate envStatus == init_data - environmentData > -locateAccuracy && init_data - environmentData < locateAccuracy
+		mitigates "Error shown by the sensor"
+		issues "The weather sensor is not accurate or giving wrong data"
+		category quality.availability
+		see goal SpeedStakeholderReq.SR_5 SpeedStakeholderReq.SR_3
+	]
+]
+
+system requirements Roadside for Speedwrisic::RSEquip.impl
+[
+	
+	val distcalculate = 32 
+	val acceleratespeed = 30 
+	val speedcompliance = 0.5
+	
+	requirement req6 : "Speed data and the location should be synced with the cloud data"
+	[
+		description "The data should be accurate and within the range"
+		compute speedInfoStatus:boolean
+		value predicate speedInfoStatus == acceleratespeed - distcalculate <speedcompliance && acceleratespeed - distcalculate > -speedcompliance
+		mitigates "Synced data is inaccurate"
+		category quality.correctness
+		see goal SpeedStakeholderReq.SR_3 SpeedStakeholderReq.SR_2
+	]
+	
+	
+]
+
+system requirements TMC for Speedwrisic::TMInfo.impl
+[
+	val syncdata = 20 ms 
+	val metasyncdata = 10 ms
+	
+	requirement req7 : "Information is provided in real time" 
+	[
+		description "Minimum internval data syncing"
+		value predicate metasyncdata < syncdata
+		mitigates "data is outdated"
+		issues "data is not update to display"
+		category quality.performance
+		see goal SpeedStakeholderReq.SR_5
+	
+	]
+		requirement req8 : "Synced data should be available to management and driver all the time" 
+	[
+		description "Synced data should be available to management and driver all the time"
+		compute speedLimit:boolean
+		val speed = speedLimit
+		value predicate speedLimit == true
+		mitigates "Invalid data provided by transit authority"
+		issues "sync data redundancy"
+		category quality.availability
+		see goal SpeedStakeholderReq.SR_2
+	]
+	
+	
+]
+
+system requirements entireSys for Speedwrisic::Speed.impl
+[
+	requirement req9 
+	[
+		description this "on-board user sensors will access the data during fail/safe"
+		rationale "during contingency on-boards sensor data will show accurate infor"
+		mitigates "fail/safe procedure"
+		issues "faulty sensor"
+		category quality.availability
+		uncertainty[
+			volatility 3
+			impact 2
+		]
+	]
+	
+	requirement req10
+	[
+		description this "multi-thread level initiated"
+		rationale "to handle multi-task defined in the architecture"
+		mitigates "fail procedure during process"
+		category quality.performance
+		uncertainty[
+  			volatility 2
+			impact 4
+		]
+	]
+]

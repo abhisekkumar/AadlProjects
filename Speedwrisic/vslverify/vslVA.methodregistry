@@ -1,0 +1,15 @@
+verification methods vslVerificationMethods [
+	method comp (a:integer , b:integer)boolean:"compare two values"[
+		java vslverify.Compute.comp
+				
+	]	
+	method acc (a:integer , b:integer, c:integer)boolean:""[
+		java vslverify.Compute.acc
+				
+	]
+	method isSet (speedLimit:integer)boolean:""[
+		java vslverify.Compute.isSet
+	
+	]
+	
+]

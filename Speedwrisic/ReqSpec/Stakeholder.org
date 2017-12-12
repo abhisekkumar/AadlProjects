@@ -1,0 +1,15 @@
+organization ConnectedVehicle
+stakeholder vo
+[
+	title "Vehicle owner"
+]
+
+stakeholder top
+[
+	title "Traffic operations personnel"
+]
+
+stakeholder so
+[
+	title "Service operator"
+]

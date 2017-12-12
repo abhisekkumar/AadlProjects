@@ -1,0 +1,7 @@
+verification methods resoluteMethods [
+	
+	method enforcePeriod:""[
+	resolute  checksyncData
+	]	
+	
+]

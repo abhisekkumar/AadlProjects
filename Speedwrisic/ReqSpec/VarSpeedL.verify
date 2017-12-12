@@ -1,0 +1,117 @@
+verification plan VarspeedPlan for Vehicles[
+
+claim req1 [
+	activities
+	speedIsSet:
+	vslVerificationMethods.isSet(5)
+
+	assert all [speedIsSet]
+	]
+
+claim req2:"The vehicle has current information" [
+	
+	rationale "This plans checks the sync period of the data between vehicle and RSE"
+	activities
+	sync_Test: 
+	vslVerificationMethods.comp(20,40)
+	property values ()
+	[
+				weight 2
+				timeout 5
+			]
+			assert all[sync_Test]
+	]
+
+claim req3:"Accurate values of speed within a range of +/- 0.5" [
+	rationale "The values from two different sources are almost close"
+	activities
+	SpeedInfoStat:
+	vslVerificationMethods.acc(acceleratespeed,distcalculate,speedcompliance)
+	property values ()
+	[
+				weight 3
+				timeout 5
+			]
+	assert all [SpeedInfoStat]
+	]
+claim req4 [
+	rationale "The values from two different sources are almost close"
+	activities
+	envStatus:
+	vslVerificationMethods.acc(environmentData,init_data,locateAccuracy)
+	property values ()
+	[
+				weight 4
+				timeout 5
+			]
+	assert all [envStatus]
+	]
+
+
+]
+
+verification plan Roadway for Roadway[
+	claim req5[
+		activities
+	envStatus:
+	vslVerificationMethods.acc(environmentData,init_data,locateAccuracy)
+	property values ()
+	[
+				weight 4
+				timeout 5
+			]
+	assert all [envStatus]
+	]
+	
+]
+
+verification plan Roadside for Roadside[
+	claim req6[
+activities
+	SpeedInfoStat:
+	vslVerificationMethods.acc(acceleratespeed,distcalculate,speedcompliance)
+	property values ()
+	[
+				weight 3
+				timeout 5
+			]
+	assert all [SpeedInfoStat]
+	]
+	
+]
+
+verification  plan TMC for TMC[
+	claim req7[
+		activities
+	sync_Test2: 
+	vslVerificationMethods.comp(20,40)
+	property values ()
+	[
+				weight 2
+				timeout 5
+			]
+			assert all[sync_Test2]
+	]
+	
+	claim req8[
+	activities
+	speedIsSet2:
+	vslVerificationMethods.isSet(20)
+	property values ()
+	[
+				weight 4
+				timeout 5
+			]
+	assert all [speedIsSet2]
+	]
+]
+verification plan sys for entireSys[
+	claim req10[
+		activities
+		enforcePeriod:"resolute constraint":
+		resoluteMethods.enforcePeriod()
+		assert all[enforcePeriod]
+	]
+claim req9 [
+	]
+]
